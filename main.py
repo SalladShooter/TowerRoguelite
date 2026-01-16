@@ -1,5 +1,6 @@
 import pygame as py
 from player import Player
+from enemy import Enemy
 from moves import Moves
 
 py.init()
@@ -10,11 +11,13 @@ running = True
 all_sprites = py.sprite.Group()
 moves = py.sprite.Group()
 
-player = Player()
-all_sprites.add(player)
+player = Player(300,360,50,50)
+enemy = Enemy(980,360,50,50)
+all_sprites.add(player,enemy)
 
-for i in range(5):
-    move = Moves()
+move_count = 5
+for i in range(move_count):
+    move = Moves(move_count*15*i+(move_count*25),620,50,50)
     moves.add(move)
     all_sprites.add(move)
 
@@ -26,6 +29,7 @@ while running:
     screen.fill("black")
 
     all_sprites.update()
+    all_sprites.draw(screen)
 
     py.display.flip()
 
