@@ -8,5 +8,5 @@ class Enemy(py.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = (xpos-width/2, ypos-height/2)
 
-    def update(self):
+    def update(self, event):
         pass

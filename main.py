@@ -25,10 +25,15 @@ while running:
     for event in py.event.get():
         if event.type == py.QUIT:
             running = False
+        elif event.type == py.MOUSEBUTTONDOWN:
+            if event.button == 1:
+                for move in moves:
+                    if move.rect.collidepoint(event.pos):
+                        move.toggle_selection()
 
     screen.fill("black")
 
-    all_sprites.update()
+    all_sprites.update(event)
     all_sprites.draw(screen)
 
     py.display.flip()
