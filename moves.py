@@ -17,6 +17,6 @@ class Moves(py.sprite.Sprite):
             self.image.fill((200,200,200))
         else:
             self.image.fill((100,100,100))
-    
+
     def toggle_selection(self):
         self.selected = not self.selected
