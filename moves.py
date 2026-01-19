@@ -18,5 +18,8 @@ class Moves(py.sprite.Sprite):
         else:
             self.image.fill((100,100,100))
 
-    def toggle_selection(self):
+    def toggle_selection(self, energy, max_energy):
+        if not self.selected and energy >= max_energy:
+            return
+
         self.selected = not self.selected

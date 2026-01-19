@@ -13,10 +13,11 @@ all_sprites = py.sprite.Group()
 moves = py.sprite.Group()
 
 energy = 0
+max_energy = 3
 move_count = 5
 player = Player(300,360,50,50)
 enemy = Enemy(980,360,50,50)
-energyText = Text(f"{energy}/{move_count}",32,640,620)
+energyText = Text(f"{energy}/{max_energy}",32,640,620)
 all_sprites.add(player,enemy,energyText)
 
 for i in range(move_count):
@@ -32,16 +33,17 @@ while running:
             if event.button == 1:
                 for move in moves:
                     if move.rect.collidepoint(event.pos):
-                        move.toggle_selection()
-                        if move.selected:
+                        old_state = move.selected
+                        move.toggle_selection(energy, max_energy)
+                        if not old_state and move.selected:
                             energy += 1
-                        else:
+                        elif old_state and not move.selected:
                             energy -= 1
 
     screen.fill("black")
 
     all_sprites.update(event)
-    energyText.update_text(f"{energy}/{move_count}")
+    energyText.update_text(f"{energy}/{max_energy}")
     all_sprites.draw(screen)
 
     py.display.flip()
