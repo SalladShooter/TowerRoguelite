@@ -1,6 +1,6 @@
 import pygame as py
 
-class Moves(py.sprite.Sprite):
+class Actions(py.sprite.Sprite):
     def __init__(self, xpos, ypos, width, height):
         super().__init__()
         self.image = py.Surface((width,height))

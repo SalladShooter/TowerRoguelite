@@ -1,8 +1,9 @@
 import pygame as py
 from text import Text
 from player import Player
+from startmove import StartMove
 from enemy import Enemy
-from moves import Moves
+from actions import Actions
 
 py.init()
 screen = py.display.set_mode((1280,720))
@@ -17,11 +18,13 @@ max_energy = 3
 move_count = 5
 player = Player(300,360,50,50)
 enemy = Enemy(980,360,50,50)
-energyText = Text(f"{energy}/{max_energy}",32,640,620)
-all_sprites.add(player,enemy,energyText)
+energyText = Text(f"{energy}/{max_energy}",32,640,570)
+startButton = StartMove(640+100/2,645,100,50)
+startText = Text(f"Start",32,640,620)
+all_sprites.add(player,enemy,energyText,startButton,startText)
 
 for i in range(move_count):
-    move = Moves(move_count*15*i+(move_count*25),620,50,50)
+    move = Actions(move_count*15*i+(move_count*25),620,50,50)
     moves.add(move)
     all_sprites.add(move)
 
