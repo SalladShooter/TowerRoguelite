@@ -10,17 +10,21 @@ screen = py.display.set_mode((1280,720))
 clock = py.time.Clock()
 running = True
 
+health_sprites = py.sprite.Group()
 all_sprites = py.sprite.Group()
 moves = py.sprite.Group()
 
 energy = 0
 max_energy = 3
 move_count = 5
-player = Player(300,360,50,50)
-enemy = Enemy(980,360,50,50)
+
+player = Player(300,360,50,50,5)
+enemy = Enemy(980,360,50,50,5)
 energyText = Text(f"{energy}/{max_energy}",32,640,570)
 startButton = StartMove(640+100/2,645,100,50)
 startText = Text(f"Start",32,640,620)
+
+health_sprites.add(player,enemy)
 all_sprites.add(player,enemy,energyText,startButton,startText)
 
 for i in range(move_count):
@@ -42,11 +46,15 @@ while running:
                             energy += 1
                         elif old_state and not move.selected:
                             energy -= 1
+                if startButton.rect.collidepoint(event.pos):
+                    enemy.health -= 1
 
     screen.fill("black")
 
     all_sprites.update(event)
     energyText.update_text(f"{energy}/{max_energy}")
+    for sprite in health_sprites:
+        sprite.draw_healthbar(screen)
     all_sprites.draw(screen)
 
     py.display.flip()
