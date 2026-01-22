@@ -1,14 +1,16 @@
 import pygame as py
 
 class Player(py.sprite.Sprite):
-    def __init__(self, xpos, ypos, width, height, health):
+    def __init__(self, xpos, ypos, width, height, max_health, damage, energy):
         super().__init__()
         self.image = py.Surface((width,height))
         self.image.fill((0,255,0))
         self.rect = self.image.get_rect()
         self.rect.center = (xpos-width/2,ypos-height/2)
-        self.max_health = health
-        self.health = health
+        self.max_health = max_health
+        self.health = max_health
+        self.damage = damage
+        self.energy = energy
         self.healthbar_width = 100
         self.healthbar_height = 20
 

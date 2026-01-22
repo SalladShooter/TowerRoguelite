@@ -14,13 +14,17 @@ health_sprites = py.sprite.Group()
 all_sprites = py.sprite.Group()
 moves = py.sprite.Group()
 
-energy = 0
-max_energy = 3
 move_count = 5
 
-player = Player(300,360,50,50,5)
+player = Player(300,360,50,50,3,1,10)
+
+energy = 0
+max_energy = player.energy
+
 enemy = Enemy(980,360,50,50,5)
+
 energyText = Text(f"{energy}/{max_energy}",32,640,570)
+
 startButton = StartMove(640+100/2,645,100,50)
 startText = Text(f"Start",32,640,620)
 
